@@ -1,14 +1,15 @@
 .cv {
+  @include verticalCenter;
     .cvContent {
       background: linear-gradient(115deg, $color-background 50%, transparent 115%);
       min-height: $minHeight;
       width: 100vw;
+      height: 100%;
       border-radius: $borderRadius;
       overflow: hidden;
       font-family: $font-1;
-      position: flex;
       text-align: center;
-      display: relative;
+      
 
       .title {
         @include verticalCenter;
