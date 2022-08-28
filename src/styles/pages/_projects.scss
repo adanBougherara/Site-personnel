@@ -256,3 +256,12 @@
       }
     }
   }
+
+  @media screen and (max-width: 439px) {
+    .sourceButton {
+      display: inline-block;
+    }
+    .name {
+      padding-top: 2vh;
+    }
+  }
