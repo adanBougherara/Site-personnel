@@ -1,0 +1,146 @@
+.cv {
+    .cvContent {
+      background: linear-gradient(115deg, $color-background 50%, transparent 115%);
+      min-height: $minHeight;
+      width: 100vw;
+      border-radius: $borderRadius;
+      overflow: hidden;
+      font-family: $font-1;
+      position: flex;
+      text-align: center;
+      display: relative;
+
+      .title {
+        @include verticalCenter;
+        padding-top: 1vh;
+        
+        .button {
+          padding-top: 3vh;
+          padding-left: 5vh;
+          a {
+            font-size: 0.8rem;
+            background: $color-3;
+            padding: 1rem 1.5rem;
+            border-radius: $borderRadius;
+            box-shadow: 0 5px 1px rgb(15, 15, 15);
+            transition: 0.2s ease;
+          }
+        }
+      }
+      
+      .photo {
+        width: 123.7px;
+        height: 133.4px;
+        margin-top: 3vh;
+        margin-left: 10vw;
+      }
+
+      .skillsLogo {
+        float: left;
+        width: 40px;
+        height: 20px;
+        background: $white;
+      }
+      .skillsInfo {
+        margin-left: 7%;
+      }
+
+      .name {
+        color: $white;
+        display: inline-block;
+        position: relative;
+        padding-left: 2vh;
+        margin-top: 3vh;
+        font-size: 1.3em;
+      }
+      .section {
+        @include verticalCenter;
+        font-size: 1rem;
+        font-family: $font-4;
+        color: $color-5;
+        
+        .subsection {
+          @include verticalCenter;
+        }
+
+        .list {
+          li {
+            padding-top: 0.3rem;
+            
+          }
+        }
+
+        .Collapsible {
+          width: 70%;
+          padding-bottom: 1%;
+        }
+      
+        .Collapsible__contentInner {
+          padding: 0.6rem;
+          p {
+            
+            font-size: 14px;
+            line-height: 20px;
+            color: $color-cv-p;
+            background: $color-1;
+            border-radius: $borderRadius;
+      
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      
+        .Collapsible__trigger {
+          display: block;
+          border-radius: 100px;
+          font-weight: 400;
+          text-decoration: none;
+          position: relative;
+          padding: 10px;
+          background: $color-1;
+          font-family: $font-2;
+          color: $white;
+      
+          cursor: pointer;
+      
+          &:after {
+            color: $color-3;
+            font-family: "Font Awesome 5 Free";
+            content: "\f0fe";
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            display: block;
+            transition: transform 300ms;
+          }
+      
+          &.is-open {
+            &:after {
+              content: "\f146";
+              transform: rotateZ(180deg);
+            }
+          }
+        }
+      }
+
+    }
+  }
+  @media screen and (max-width: 850px){
+    .cvContent {
+      margin: 0 !important;
+      height: 100vh; 
+    }
+  }
+
+  @media screen and (max-width: 544px){
+    .cvContent {
+      .title {
+        .button {
+          display: none;
+        }
+      }
+      margin: 0 !important;
+      height: 100vh; 
+    }
+  }

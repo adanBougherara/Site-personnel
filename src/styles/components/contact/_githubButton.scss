@@ -1,0 +1,12 @@
+.gitHubButton {
+    @include verticalCenter;
+    display: block;
+    cursor: pointer;
+  
+    color: $color-3;
+  
+    :hover {
+      color: $color-1;
+    }
+  }
+  

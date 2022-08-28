@@ -1,0 +1,258 @@
+.projectsPage {
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 100%;
+    grid-template-rows: 50% 50%;
+    grid-template-areas: "radioBanner"
+    "cards";
+  
+    .projectsListContent {  
+      
+      padding-left: 2vh;
+      .radioBanner {
+        @include verticalCenter;
+        flex-wrap: wrap;
+        grid-area: radioBanner;
+        border-radius: $borderRadius;
+        background: $color-2;
+        color: red;
+
+        box-shadow: $shadow;
+  
+        li {
+          color: $color-radio-projects;
+          text-transform: uppercase;
+          font-family: $font-2;
+          padding-left: 1%;
+          padding-right: 2%;
+          @include verticalCenter;
+          float: left;
+  
+          input[type="radio"] {
+            visibility: hidden;
+            position: relative;
+  
+            &:before {
+              content: "";
+              visibility: visible;
+              position: absolute;
+              top: -4px;
+              left: -12px;
+              height: 0.9rem;
+              width: 0.9rem;
+              border-radius: 50%;
+              border: 2px solid $color-1;
+              cursor: pointer;
+              transition: 0.3s;
+            }
+  
+            &:after {
+              content: "";
+              visibility: visible;
+              position: absolute;
+              top: -4px;
+              left: -12px;
+              height: 0.9rem;
+              width: 0.9rem;
+              border-radius: 50%;
+              cursor: pointer;
+              transition: 0.3s;
+              background: $color-1;
+              transform: scale(0);
+              transform-origin: center;
+            }
+          }
+  
+          input:checked:after {
+            transform: scale(1.17) translate(-25%, -25%);
+            top: 2px;
+            left: -6px;
+          }
+  
+          input:checked+label {
+            color: $color-1;
+          }
+  
+          label {
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            padding: 0.8rem;
+          }
+        }
+      }
+    }
+  
+    .projects {
+      grid-area: cards;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+  
+      .project {
+        background: $color-2;
+        border-radius: $borderRadius;
+        margin: 0.5rem;
+        text-align: center;
+        width: 33%;
+        height: 15rem;
+        max-height: 50%;
+        padding: 0.3rem;
+        box-shadow: $shadow;
+        display: grid;
+        grid-template-rows: 20% 60% 20%;
+        grid-template-areas:
+          "logos"
+          "title"
+          "plusButton";
+      }
+  
+      h3 {
+        grid-area: title;
+        font-family: $font-2;
+        @include verticalCenter;
+        color: $color-projects-name;
+      }
+  
+      img {
+        grid-area: logos;
+        width: 20%;
+        height: 50%;
+        background: rgb(148, 141, 240);
+        border-radius: $borderRadius;
+      }
+      p {
+        color: $color-projects-text;
+        padding-top: 3vh;
+      }
+
+      .info {
+        grid-area: plusButton;
+        cursor: pointer;
+        font-size: 1.5rem;
+        transition: 0.2s;
+  
+        i {
+          font-size: 1.4rem;
+          padding: 0 0.35rem;
+          color: $color-3;
+        }
+  
+        &:hover {
+          transform: scale(1.1);
+  
+          i {
+            color: $color-4;
+          }
+        }
+      }
+  
+      .showInfo {
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        padding: 0;
+        margin: 0;
+        background: rgba(0, 0, 0, 0.507);
+        animation: popup 0.3s ease forwards;
+        transform-origin: center;
+        display: block;
+        overflow-y: scroll;
+  
+        ::-webkit-scrollbar {
+          width: 0px;
+        }
+  
+        .infoContent {
+            .name {
+                color: $color-projects-infoContent-name;
+                text-align: center;
+                grid-area: title;
+                font-size: 1.5rem;
+            }
+          display: grid;
+          grid-template-columns: auto;
+          grid-template-rows: auto;
+          grid-template-areas:
+            "sourceButton . exitButton"
+            "title title title"
+            "content content content"
+            "authors authors authors";
+          position: relative;
+          top: 25%;
+          width: 60%;
+          margin: 0 auto;
+          color: $color-1;
+          background: $color-2;
+          border-radius: $borderRadius;
+          padding: 2rem;
+          box-shadow: 0 10px 10px $color-3;
+          animation: popup 0.6s ease forwards;
+          transform: scale(0);
+          transform-origin: center;
+  
+          @keyframes popup {
+            to {
+              transform: scale(1);
+            }
+          }
+        }
+  
+        .infoButton {
+          cursor: pointer;
+          border-radius: $borderRadius;
+          border: none;
+          transition: all 0.2s;
+        }
+  
+        .sourceCode {
+          grid-area: sourceButton;
+  
+          .sourceButton {
+            @extend .infoButton;
+            color: $color-2;
+            font-family: $font-2;
+            background-color: $color-1;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.6rem;
+            position: relative;
+            top: 25%;
+          }
+        }
+  
+        .authors {
+          @include verticalCenter;
+          grid-area: authors;
+          display: block;
+          color: $color-4;
+  
+          .author {
+            display: inline-block;
+            padding-left: 0.3rem;
+            color: $color-projects-infoContent-name;
+            font-family: $font-2;
+          }
+        }
+  
+        .exitButton {
+          @extend .infoButton;
+          grid-area: exitButton;
+          background-color: $color-2;
+          color: $color-3;
+  
+          i {
+            font-size: 2.5rem;
+          }
+        }
+  
+        .text {
+          display: block;
+          grid-area: content;
+          overflow-y: scroll;
+        }
+      }
+    }
+  }
