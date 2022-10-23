@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from '../Components/Sidebar'
 import GitHubButton from "../Components/Contact/GitHubButton";
+import LinkedinButton from "../Components/Contact/LinkedinButton";
 import MailButton from "../Components/Contact/MailButton";
 
 function Contact() {
@@ -19,6 +20,9 @@ function Contact() {
               </li>
               <li>
                 <GitHubButton />
+              </li>
+              <li>
+                <LinkedinButton />
               </li>
             </ul>
           </div>
