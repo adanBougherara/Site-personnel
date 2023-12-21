@@ -23,35 +23,48 @@ import Hobby from "../Components/CV/Hobby";
 import Skills from "../Components/CV/Skills";
 
 export default class CV extends Component {
+  calculateAge = (birthdate) => {
+    const today = new Date();
+    const birthDate = new Date(birthdate);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+
+    return age;
+  };
   render() {
+    const age = this.calculateAge('1998-03-17');
     return (
-        <div className="cv">
-            <Sidebar/>
-            <div className="cvContent">
-              <div className="title">
-                <img src={photo} alt="" className="photo"></img>
-                <h1 className="name">Adan Bougherara</h1>
-                <div className="button">
-                  <a href="../media/CV.pdf" target="_blank">Télécharger CV</a>
-                </div>
-              </div> 
-              <Section
-                title="Date de naissance"
-                content={<p>17/03/1998 (24 ans)</p>}
-              />
-              <Section
-                title="Compétences"
-                content={
-                <ul className="list">
-                  <li>
-                    <Subsection
-                      title="Langues parlées"
-                      content={
+      <div className="cv">
+        <Sidebar />
+        <div className="cvContent">
+          <div className="title">
+            <img src={photo} alt="" className="photo"></img>
+            <h1 className="name">Adan Bougherara</h1>
+            <div className="button">
+              <a href="../media/CV.pdf" target="_blank">Télécharger CV</a>
+            </div>
+          </div>
+          <Section
+            title="Date de naissance"
+            content={<p>17/03/1998 ({age} ans)</p>}
+          />
+          <Section
+            title="Compétences"
+            content={
+              <ul className="list">
+                <li>
+                  <Subsection
+                    title="Langues parlées"
+                    content={
                       <ul className="list">
                         <li>
                           <Skills
                             field="Français"
-                            level="Niveau C2"
+                            level="Natif"
                             logo={frFlag}
                           />
                         </li>
@@ -63,13 +76,13 @@ export default class CV extends Component {
                           />
                         </li>
                       </ul>
-                      }
-                    />
-                  </li>
-                  <li>
-                    <Subsection
-                      title="Langages de programmation"
-                      content={
+                    }
+                  />
+                </li>
+                <li>
+                  <Subsection
+                    title="Langages de programmation"
+                    content={
                       <ul className="list">
                         <li>
                           <Skills
@@ -142,115 +155,227 @@ export default class CV extends Component {
                           />
                         </li>
                       </ul>
-                      }
-                    />
-                  </li>    
-                </ul>
-                }
-              />
-              <Section
-                title="Diplômes"
-                content={
-                  <ul className="list">
-                    <li>
-                      <Degree
-                        year="2021"
-                        degree="Licence d'informatique"
-                        honours="Mention AB"
-                      />
-                    </li>
-                    <li>
-                      <Degree
-                        year="2016"
-                        degree="Baccalauréat Série S (spécialité mathématiques)"
-                        honours="Mention B"
-                      />
-                    </li>
-                  </ul>
-                }
-              />
-              <Section 
-                title="Formation"
-                content={
-                  <ul className="list">
-                    <li>
-                      <Education
-                        date="2021-2022"
-                        cursus="M1 informatique - Parcours STL"
-                        school="Sorbonne Université (Jussieu), Paris"
-                      />
-                    </li>
-                    <li>
-                      <Education
-                        date="2017-2021"
-                        cursus="Licence - Informatique"
-                        school="Sorbonne Université (Jussieu), Paris"
-                      />
-                    </li>
-                    <li>
-                      <Education
-                        date="2016-2017"
-                        cursus="CPGE - MPSI"
-                        school="Lycée Albert Schweitzer, Le Raincy"
-                      />
-                    </li>
-                    <li>
-                      <Education
-                        date="2013-2016"
-                        cursus=""
-                        school="Lycée Jean Zay, Aulnay-Sous-Bois"
-                      />
-                    </li>
+                    }
+                  />
+                </li>
+              </ul>
+            }
+          />
+          <Section
+            title="Diplômes"
+            content={
+              <ul className="list">
+                <li>
+                  <Degree
+                    year="2023"
+                    degree={
+                      <a
+                        href="https://sciences.sorbonne-universite.fr/formation-sciences/masters/master-informatique/parcours-stl"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <strong>Master Informatique Parcours STL</strong>
+                      </a>
+                    }
+                    honours="Mention Bien"
+                  />
+                </li>
+                <li>
+                  <Degree
+                    year="2021"
+                    degree={
+                      <a
+                        href="https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/licences/licences-generales-l2-l3/licence-dinformatique"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <strong>Licence Informatique</strong>
+                      </a>
+                    }
+                    honours="Mention Assez Bien"
+                  />
+                </li>
+                <li>
+                  <Degree
+                    year="2016"
+                    degree={
+                      <a
+                        href="https://www.lycjzayaulnay.fr"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <strong>Baccalauréat Série S (Section Européenne Anglais)</strong>
+                      </a>
+                    }
+                    honours="Mention Bien"
+                  />
+                </li>
+              </ul>
+            }
+          />
+          <Section
+            title="Formation"
+            content={
+              <ul className="list">
+                <li>
+                  <Education
+                    date="2021-2023"
+                    cursus={
+                      <a
+                        href="https://sciences.sorbonne-universite.fr/formation-sciences/masters/master-informatique/parcours-stl"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <strong>Master Informatique Parcours STL</strong>
+                      </a>
+                    }
+                    school="Sorbonne Université (Jussieu), Paris"
+                  />
+                </li>
+                <li>
+                  <Education
+                    date="2017-2021"
+                    cursus={
+                      <a
+                        href="https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/licences/licences-generales-l2-l3/licence-dinformatique"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <strong>Licence Informatique</strong>
+                      </a>
+                    }
+                    school="Sorbonne Université (Jussieu), Paris"
+                  />
+                </li>
+                <li>
+                  <Education
+                    date="2016-2017"
+                    cursus={
+                      <a
+                        href="https://lyceeschweitzer.fr"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <strong>CPGE - MPSI</strong>
+                      </a>
+                    }
+                    school="Lycée Albert Schweitzer, Le Raincy"
+                  />
+                </li>
+                <li>
+                  <Education
+                    date="2013-2016"
+                    school={
+                      <a
+                        href="https://www.lycjzayaulnay.fr"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <strong>Lycée Jean Zay</strong>, Aulnay-Sous-Bois
+                      </a>
+                    }
+                  />
+                </li>
 
-                  </ul>
-                }
-              />
-              <Section
-                title="Expérience professionnelle"
-                content={
-                  <ul className="list">
-                    <li>
-                      <Job
-                        duration="Juillet 2019"
-                        job="Contractuel"
-                        employer="Marie du XIVe arrondissement"
-                        location="Paris"
-                        task="Affaires Générales - Élections"
-                      />
-                    </li>
-                    <li>
-                      <Job
-                        duration="Juillet 2018"
-                        job="Contractuel"
-                        employer="Marie du XIVe arrondissement"
-                        location="Paris"
-                        task="État-Civil - Traitement numérique d'actes"
-                      />
-                    </li>
-                  </ul>
-                }
-              />
-              <Section
-                title="Centres d'interêts"
-                content={
-                  <ul className="list">
-                    <li>
-                      <Hobby 
-                        name="Passion pour les jeux vidéos"
-                        content=""
-                      />
-                    </li>
-                    <li>
-                      <Hobby 
-                        name="Basketball - "
-                        content="Inscrit au Blanc Mesnil Sport Basketball pendant 6 ans"
-                      />
-                    </li>
-                  </ul>
-                }
-              />
-            </div>
+              </ul>
+            }
+          />
+          <Section
+            title="Expérience professionnelle"
+            content={
+              <ul className="list">
+                <li>
+                  <Job
+                    duration="En cours"
+                    job="CDI"
+                    employer={
+                      <a
+                        href="https://almaviacx.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <strong>Almavia CX</strong>
+                      </a>
+                    }
+                    location="Paris"
+                    task={
+                      <a
+                        href="https://almaviacx.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <strong>Développeur logiciel (CRM E-DEAL)</strong>
+                      </a>
+                    }
+                  />
+                </li>
+                <li>
+                  <Job
+                    duration="Févr. 2023- Août 2023"
+                    job="Stage"
+                    employer={
+                      <a
+                        href="https://almaviacx.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <strong>Almavia CX</strong>
+                      </a>
+                    }
+                    location="Paris"
+                    task={
+                      <a
+                        href="https://almaviacx.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <strong>Développeur logiciel (CRM E-DEAL)</strong>
+                      </a>
+                    }
+                  />
+                </li>
+                <li>
+                  <Job
+                    duration="Juillet 2019"
+                    job="Stage"
+                    employer="Marie du XIVe arrondissement"
+                    location="Paris"
+                    task="Affaires Générales - Élections"
+                  />
+                </li>
+                <li>
+                  <Job
+                    duration="Juillet 2018"
+                    job="Contractuel"
+                    employer="Marie du XIVe arrondissement"
+                    location="Paris"
+                    task="État-Civil - Traitement numérique d'actes"
+                  />
+                </li>
+              </ul>
+            }
+          />
+          <Section
+            title="Centres d'interêts"
+            content={
+              <ul className="list">
+                <li>
+                  <Hobby
+                    name="Passion pour les jeux vidéos"
+                    content=""
+                  />
+                </li>
+                <li>
+                  <Hobby
+                    name="Basketball - "
+                    content="Inscrit au Blanc Mesnil Sport Basketball pendant 6 ans"
+                  />
+                </li>
+              </ul>
+            }
+          />
         </div>
+      </div>
     )
   }
 }
